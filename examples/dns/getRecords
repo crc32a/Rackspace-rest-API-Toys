@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+import exp.rest.base.util
+import clientUtils
+import sys
+import os
+
+util = exp.rest.base.util.BaseUtil
+printf = util.printf
+
+def usage(prog):
+    printf("usage is %s <domainId>\n",prog)
+    printf("\n")
+    printf("Fetch records for this domain\n")
+
+dns = clientUtils.dns
+
+prog = os.path.basename(sys.argv[0])
+if len(sys.argv)<2:
+    usage(prog)
+    sys.exit()
+
+domain_id = int(sys.argv[1])
+
+printf("Records for account=%i domain=%i\n",dns.account,domain_id)
+printf("="*75)
+printf("\n")
+
+records = dns.getRecords(domain_id)["records"]
+printf("%s %s %s %s\n","Name","type","data","ttl")
+for r in records:
+    printf("%s %s %s %s\n",r["name"],r["type"],r["data"],r["ttl"])

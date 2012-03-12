@@ -1,0 +1,8 @@
+Run the setAccount setDnsEndpoint and setLbaasEndpoint scripts to populate
+your conf.json file
+
+Also copy auth_example.json to auth.json and edit it for your account
+the run "getauth auth.json" to populate the curr_auth.json and auth_resp.json
+objects for later use by the examples
+
+you can change them at any time by rerunning the scripts.

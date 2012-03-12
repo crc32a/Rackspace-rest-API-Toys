@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+
+import exp.rest.auth.client.auth1_1
+import exp.rest.base.util
+import json
+import sys
+import os
+
+
+Auth1_1Client = exp.rest.auth.client.auth1_1.Auth1_1Client
+util = exp.rest.base.util.BaseUtil
+
+def usage(prog):
+    util.printf("usage is %s <auth json file>\n",prog)
+    util.printf("\n")
+    util.printf("copy your auth_example.json file to auth.json and edit\n")
+    util.printf("it. Then run this command with auth.json as your 1st arg\n")
+    util.printf("or what ever name you save it ass\n")
+
+prog = os.path.basename(sys.argv[0])
+if len(sys.argv)<2:
+    usage(prog)
+    sys.exit()
+
+conf_file = sys.argv[1]
+conf = util.load_json(conf_file)
+auth = Auth1_1Client(**conf)
+ar = auth.fetchAuth()
+util.printf("%s\n",json.dumps(ar,indent=4))
+util.save_json("auth_resp.json",ar)
+util.save_json("curr_auth.json",conf)

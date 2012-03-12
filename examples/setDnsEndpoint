@@ -1,0 +1,37 @@
+#!/usr/bin/env python
+
+import exp.rest.base.util
+import json
+import sys
+import os
+
+util = exp.rest.base.util.BaseUtil
+
+eps = [ "https://dns.api.rackspacecloud.com/v1.0",
+"https://lon.dns.api.rackspacecloud.com/v1.0"
+]
+
+def usage(prog):
+    util.printf("usage is %s <LbaasEndpoint>\n",prog)
+    util.printf("\n")
+    util.printf("Sets the url endpoint in the conf.json file\n")
+    util.printf("\n")
+    util.printf("Good Choices are:\n")
+    for ep in eps:
+        util.printf("    %s\n",ep)
+
+prog = os.path.basename(sys.argv[0])
+if len(sys.argv)<2:
+    usage(prog)
+    sys.exit()
+
+endpoint = sys.argv[1]
+
+try:
+    conf = util.load_json("conf.json")
+except:
+    conf = {}
+
+conf["dnsEndPoint"] = sys.argv[1]
+util.save_json("conf.json",conf)
+

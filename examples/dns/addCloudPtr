@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+
+import exp.rest.base.util
+import clientUtils
+import sys
+import os
+
+util = exp.rest.base.util.BaseUtil
+printf = util.printf
+
+def usage(prog):
+    printf("usage is %s <name> <ip> <url> [ttl]\n",prog)
+    printf("\n")
+    printf("Add PTR record for ip\n")
+
+prog = os.path.basename(sys.argv[0])
+if len(sys.argv)<4:
+    usage(prog)
+    sys.exit()
+name = sys.argv[1]
+ip = sys.argv[2]
+url = sys.argv[3]
+if len(sys.argv)>=5:
+    ttl = int(ttl)
+else:
+    ttl = 300
+
+dns = clientUtils.dns
+sname = "cloudLB"
+resp = dns.addPtr(sname,url,name,ip,ttl)
+

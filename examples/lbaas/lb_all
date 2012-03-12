@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+
+import clientUtils
+import json
+import sys
+import os
+
+obj = clientUtils.lbaas.getLoadBalancers()
+json_str = json.dumps(obj,indent=4)
+
+sys.stdout.write(json_str)
