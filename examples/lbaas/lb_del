@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+
+import exp.rest.base.util
+import exp.objs.lbaas
+import clientUtils
+import json
+import sys
+import os
+
+util = exp.rest.base.util.BaseUtil
+printf = util.printf
+lbaas = exp.objs.lbaas.lbaas
+clientUtils.lbaas.headers = clientUtils.xmlHdrs
+
+def usage(prog):
+    printf("Usage is %s <lb_id>\n",prog)
+    printf("\n")
+
+prog = os.path.basename(sys.argv[0])
+if len(sys.argv)<2:
+    usage(prog)
+    sys.exit()
+
+lid = int(sys.argv[1])
+resp = clientUtils.lbaas.delLoadBalancer(lid)
+

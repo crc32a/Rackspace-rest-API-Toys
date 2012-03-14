@@ -11,6 +11,14 @@ AuthClient = exp.rest.auth.client.auth1_1.Auth1_1Client
 DnsClient = exp.rest.dns.client.DnsClient
 LbaasClient = exp.rest.lbaas.client.lbaas1_0.LbaasClient1_0
 
+def attrStrs(obj,*attrNames):
+    out = ""
+    for attrName in attrNames[:-1]:
+        out += "%s=%s, "%(attrName,getattr(obj,attrName))
+    for attrName in attrNames[-1:]:
+        out += "%s=%s"%(attrName,getattr(obj,attrName))
+    return out
+
 #Git the filepath relative to this module.
 def rp(file_path):
     try:
@@ -21,6 +29,8 @@ def rp(file_path):
 
 
 #run getauth first
+
+
 auth_resp = util.load_json(rp("auth_resp.json"))
 auth_conf = util.load_json(rp("curr_auth.json"))
 auth_conf.update({"auth_resp":auth_resp})
@@ -32,7 +42,10 @@ account = conf["account"]
 dnsep = conf["dnsEndPoint"]
 lbaasep = conf["lbaasEndPoint"]
 
+#if you want XML use this. Json is used by default
+xmlHdrs = {"accept":"application/xml","content-type":"application/xml"}
+
 auth = AuthClient(**auth_conf)
-dns = DnsClient(uri=dnsep,account=account,auth=auth)
+dns = DnsClient(uri=dnsep,account=account,auth=auth,headers=xmlHdrs)
 lbaas = LbaasClient(uri=lbaasep,account=account,auth=auth)
 

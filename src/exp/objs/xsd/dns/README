@@ -1,0 +1,6 @@
+Used PyXB v1.1.3 
+http://pyxb.sourceforge.net/index.html
+
+Commands used from this directory where:
+pyxbgen -u DNSApi.xsd -m dns
+

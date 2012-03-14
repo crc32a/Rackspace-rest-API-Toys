@@ -41,6 +41,3 @@ class Auth1_1Client(BaseClient):
 
     def getServiceCatalog(self):
         return copy.deepcopy(self.auth_resp["auth"]["serviceCatalog"])
-
-
-

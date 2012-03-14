@@ -1,11 +1,34 @@
 #!/usr/bin/env python
 
+import exp.rest.base.util
+import exp.objs.lbaas
 import clientUtils
 import json
 import sys
 import os
 
-obj = clientUtils.lbaas.getLoadBalancers()
-json_str = json.dumps(obj,indent=4)
+util = exp.rest.base.util.BaseUtil
+printf = util.printf
+lbaas = exp.objs.lbaas.lbaas
+clientUtils.lbaas.headers = clientUtils.xmlHdrs
 
-sys.stdout.write(json_str)
+
+
+resp = clientUtils.lbaas.getLoadBalancers()
+xml = resp.read()
+lbs = lbaas.CreateFromDocument(xml)
+
+if util.pyXBName(lbs) != "loadBalancers":
+    sys.stdout.write("Error object returned was %s\n"%pyXBName(lbs))
+    sys.exit()
+
+for lb in lbs.loadBalancer:
+    cols = ["name","id","port","protocol","status"]
+    msg = "lb %s:\n"%(clientUtils.attrStrs(lb,*cols))
+    sys.stdout.write(msg)
+    sys.stdout.write("vips\n")
+    for vip in lb.virtualIps.virtualIp:
+        msg = "   vip %s:\n"%(clientUtils.attrStrs(vip,"id","type","address"))
+        sys.stdout.write(msg)
+    sys.stdout.write("\n\n")
+

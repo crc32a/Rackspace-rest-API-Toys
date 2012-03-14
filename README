@@ -1,1 +1,5 @@
 Experimental Rest Clients for Rackspace rest APIs.
+
+Requirements:
+-------------------------------
+PyXB http://pyxb.sourceforge.net/index.html (implemented  with v1.1.3)

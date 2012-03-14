@@ -1,9 +1,0 @@
-Used generateDS.py to create python objects out of xsd.
-http://www.rexx.com/~dkuhlman/generateDS.html (generateDS 2.7b)
-
-Commands used from this directory where:
-
-generateDS.py -o LbApi.py -s LbApiSub.py LoadBalancerApi.xsd
-
-generateDS.py -o generateDS.py -o ../LbFault.py -s ../LbFaultSub.py LoadBalancerApiFaults.xsd
-

@@ -9,10 +9,14 @@
             xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
             jaxb:extensionBindingPrefixes="xjc">
 
-    <xsd:import schemaLocation="atom.xsd" namespace="http://www.w3.org/2005/Atom"/>
+    <xsd:import schemaLocation="atom.xsd" 
+                namespace="http://www.w3.org/2005/Atom"/>
 
-    <xsd:element name="loadBalancers">
-        <xsd:complexType>
+    <xsd:import schemaLocation="LoadBalancerApiFaults.xsd" 
+                namespace="http://docs.openstack.org/loadbalancers/api/v1.0"/>
+
+    <xsd:element name="loadBalancers" type="tns:loadBalancers">
+        <xsd:complexType name="loadBalancers">
             <xsd:sequence>
                 <xsd:element name="loadBalancer" type="tns:loadBalancer" minOccurs="0" maxOccurs="unbounded"/>
                 <xsd:element ref="atom:link" minOccurs="0" maxOccurs="unbounded"/>

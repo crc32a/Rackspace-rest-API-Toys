@@ -1,0 +1,47 @@
+#!/usr/bin/env python
+
+import exp.rest.base.util
+import exp.objs.lbaas
+import clientUtils
+import json
+import sys
+import os
+
+util = exp.rest.base.util.BaseUtil
+printf = util.printf
+lbaas = exp.objs.lbaas.lbaas
+clientUtils.lbaas.headers = clientUtils.xmlHdrs
+
+def usage(prog):
+    printf("Usage is %s <lb Name> <nodeIp..N>\n",prog)
+    printf("\n")
+
+prog = os.path.basename(sys.argv[0])
+if len(sys.argv)<3:
+    usage(prog)
+    sys.exit()
+
+nodeIps = sys.argv[2:]
+lb_name = sys.argv[1]
+
+lb = lbaas.loadBalancer()
+lb.name = lb_name
+lb.protocol="HTTP"
+lb.port=80
+lb.nodes = lbaas.nodes()
+
+vips = lbaas.virtualIps()
+vip = lbaas.virtualIp()
+vip.type = "PUBLIC"
+vips.append(vip)
+lb.virtualIps = vips
+
+for nodeIp in nodeIps:
+    node = lbaas.node()
+    node.address = nodeIp
+    node.port = 80
+    node.condition = "ENABLED"
+    node.weight = 1
+    lb.nodes.append(node)
+
+resp = clientUtils.lbaas.createLoadBalancer(data=lb.toxml(),method="POST")

@@ -1,6 +1,5 @@
 import exp.rest.base.client
 import urllib2
-import json
 import copy
 
 BaseClient = exp.rest.base.client.BaseClient
@@ -22,5 +21,25 @@ class LbaasClient1_0(BaseClient):
         uri_tail = "/%i/loadbalancers%s"%(self.account,qStr)
         req = self.request(uri_tail,**kw)
         resp = urllib2.urlopen(req)
-        return json.loads(resp.read())
+        return resp
+
+    def getLoadBalancer(self,*args,**kw):
+        argsList = list(args)
+        lid = argsList.pop(0)
+        (kw,qStr) = self._defaultArgs(*args,**kw)
+        uri_tail = "/%i/loadbalancers/%s%s"%(self.account,lid,qStr)
+        req = self.request(uri_tail,**kw)
+        resp = urllib2.urlopen(req)
+        return resp
+
+    def delLoadBalancer(self,*args,**kw):
+        kw["method"]="DELETE"
+        return self.getLoadBalancer(*args,**kw)
+
+    def createLoadBalancer(self,*args,**kw):
+        (kw,qStr) = self._defaultArgs(*args,**kw)
+        uri_tail = "/%i/loadbalancers%s"%(self.account,qStr)
+        req = self.request(uri_tail,**kw)
+        resp = urllib2.urlopen(req)
+        return resp
 

@@ -1,6 +1,5 @@
 import exp.rest.base.client
 import urllib2
-import json
 import copy
 
 BaseClient = exp.rest.base.client.BaseClient
@@ -22,7 +21,7 @@ class DnsClient(BaseClient):
         uri_tail = "/%i/domains%s"%(self.account,qStr)
         req = self.request(uri_tail,**kw)
         resp = urllib2.urlopen(req)
-        return json.loads(resp.read())
+        return resp
 
     def getRecords(self,*argsIn,**kw):
         args = list(argsIn)
@@ -31,7 +30,7 @@ class DnsClient(BaseClient):
         uri_tail = "/%i/domains/%i/records%s"%(self.account,domainId,qStr)
         req = self.request(uri_tail,**kw)
         resp = urllib2.urlopen(req)
-        return json.loads(resp.read())
+        return resp
 
     def addPtr(self,*argsIn,**kw):
         obj = {}
@@ -58,7 +57,7 @@ class DnsClient(BaseClient):
         kw["data"] = jsonStr
         req = self.request(uri_tail,**kw)
         resp = urllib2.urlopen(req)
-        return json.loads(resp.read())
+        return resp
         
         
         

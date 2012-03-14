@@ -10,12 +10,5 @@ printf = util.printf
 
 dns = clientUtils.dns
 
-domains = dns.getDomains()["domains"]
-
-printf("Domains for account %i\n",dns.account)
-printf("%40s%15s\n","Name","id")
-printf("="*75)
-printf("\n")
-for d in domains:
-    printf("%40s%15s\n",d["name"],d["id"])
-
+resp = dns.getDomains()
+obj = resp.read()

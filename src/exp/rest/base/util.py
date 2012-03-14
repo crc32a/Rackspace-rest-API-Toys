@@ -56,3 +56,15 @@ class BaseUtil(object):
         fp.write(out)
         fp.close()
 
+    @staticmethod
+    def dir(obj):
+        for m in sorted(dir(obj)):
+            sys.stdout.write("%s\n"%m)
+        sys.stdout.flush()
+
+    @staticmethod
+    def pyXBName(obj):
+        className = obj.__class__.__name__
+        if className[-1] == "_":
+            return className[:-1]
+        return className
