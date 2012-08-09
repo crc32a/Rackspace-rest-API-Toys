@@ -81,9 +81,10 @@ class BaseClient(object):
         uri = self.uri + uri_tail
         if kw.get("debug",self.debug):
             fprintf(sys.stderr,"uri=%s\ndata=%s\nheaders=%s\n",uri,data,headers)
+        method = kw.get("method","GET")
+        print method,uri
         req = urllib2.Request(uri,data=data,headers=headers)
-        if kw.has_key("method"):
-            req.get_method = setRequestMethod(kw["method"])
+        req.get_method = setRequestMethod(method)
         return req
 
     def postReq(self,*args,**kw):

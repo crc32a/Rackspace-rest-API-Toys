@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 
-import exp.rest.base.client
-import exp.rest.base.util
+import rackspace.exp.rest.base.client
+import rackspace.exp.rest.base.util
 import urllib2
 import json
 import copy
 
-BaseClient = exp.rest.base.client.BaseClient
+BaseClient = rackspace.exp.rest.base.client.BaseClient
 
 class Auth1_1Client(BaseClient):
-    util = exp.rest.base.util.BaseUtil
+    util = rackspace.exp.rest.base.util.BaseUtil
     def __init__(self,*args,**kw):
         self.username = kw.pop("username")
         self.key  = kw.pop("key")

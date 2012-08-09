@@ -1,8 +1,8 @@
-import exp.rest.base.client
+import rackspace.exp.rest.base.client
 import urllib2
 import copy
 
-BaseClient = exp.rest.base.client.BaseClient
+BaseClient = rackspace.exp.rest.base.client.BaseClient
 
 class DnsClient(BaseClient):
     def __init__(self,*args,**kw):
@@ -28,6 +28,16 @@ class DnsClient(BaseClient):
         domainId = args.pop(0)
         (kw,qStr) = self._defaultArgs(*args,**kw)
         uri_tail = "/%i/domains/%i/records%s"%(self.account,domainId,qStr)
+        req = self.request(uri_tail,**kw)
+        resp = urllib2.urlopen(req)
+        return resp
+
+    def listPtr(self,*argsIn,**kw):
+        args = list(argsIn)
+        serviceName = args.pop(0) #Example CloudLb
+   
+        (kw,qStr) = self._defaultArgs(*args,**kw)
+        uri_tail = "/%i/"%(self.account,domainId,qStr)
         req = self.request(uri_tail,**kw)
         resp = urllib2.urlopen(req)
         return resp

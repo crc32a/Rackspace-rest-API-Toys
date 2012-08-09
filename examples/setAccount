@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-import exp.rest.base.util
+import rackspace.exp.rest.base.util
 import json
 import sys
 import os
 
-util = exp.rest.base.util.BaseUtil
+util = rackspace.exp.rest.base.util.BaseUtil
 
 def usage(prog):
     util.printf("usage is %s <accountId>\n",prog)

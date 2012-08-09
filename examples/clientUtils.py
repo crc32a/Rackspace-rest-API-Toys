@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 
-import exp.rest.base.util
-import exp.rest.auth.client.auth1_1
-import exp.rest.dns.client
-import exp.rest.lbaas.client.lbaas1_0
+import rackspace.exp.rest.base.util
+import rackspace.exp.rest.auth.client.auth1_1
+import rackspace.exp.rest.dns.client
+import rackspace.exp.rest.lbaas.client.lbaas1_0
 import os
 
-util = exp.rest.base.util.BaseUtil
-AuthClient = exp.rest.auth.client.auth1_1.Auth1_1Client
-DnsClient = exp.rest.dns.client.DnsClient
-LbaasClient = exp.rest.lbaas.client.lbaas1_0.LbaasClient1_0
+util = rackspace.exp.rest.base.util.BaseUtil
+AuthClient = rackspace.exp.rest.auth.client.auth1_1.Auth1_1Client
+DnsClient = rackspace.exp.rest.dns.client.DnsClient
+LbaasClient = rackspace.exp.rest.lbaas.client.lbaas1_0.LbaasClient1_0
 
 def attrStrs(obj,*attrNames):
     out = ""

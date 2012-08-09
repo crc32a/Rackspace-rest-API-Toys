@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
-import exp.rest.auth.client.auth1_1
-import exp.rest.base.util
+import rackspace.exp.rest.auth.client.auth1_1
+import rackspace.exp.rest.base.util
 import json
 import sys
 import os
 
 
-Auth1_1Client = exp.rest.auth.client.auth1_1.Auth1_1Client
-util = exp.rest.base.util.BaseUtil
+Auth1_1Client = rackspace.exp.rest.auth.client.auth1_1.Auth1_1Client
+util = rackspace.exp.rest.base.util.BaseUtil
 
 def usage(prog):
     util.printf("usage is %s <auth json file>\n",prog)

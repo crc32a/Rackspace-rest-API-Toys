@@ -1,8 +1,8 @@
-import exp.rest.base.client
+import rackspace.exp.rest.base.client
 import urllib2
 import copy
 
-BaseClient = exp.rest.base.client.BaseClient
+BaseClient = rackspace.exp.rest.base.client.BaseClient
 
 class LbaasClient1_0(BaseClient):
     def __init__(self,*args,**kw):
