@@ -1,1 +1,2 @@
 import dns
+import dnsFault

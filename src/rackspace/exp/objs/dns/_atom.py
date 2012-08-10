@@ -1,6 +1,6 @@
 # ./_atom.py
 # PyXB bindings for NM:741a4e51acfa398449878d8690bb692b0b09b93a
-# Generated 2012-04-03 13:47:40.922434 by PyXB version 1.1.3
+# Generated 2012-08-10 11:25:00.642240 by PyXB version 1.1.3
 # Namespace http://www.w3.org/2005/Atom [xmlns:atom]
 
 import pyxb
@@ -12,7 +12,7 @@ import pyxb.utils.domutils
 import sys
 
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:7da26872-7dbd-11e1-9372-002564955ea1')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:eea10da8-e307-11e1-979e-002564955ea1')
 
 # Import bindings for namespaces imported into schema
 import pyxb.binding.datatypes
@@ -51,10 +51,10 @@ class linkType (pyxb.binding.basis.complexTypeDefinition):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, u'linkType')
     # Base type is pyxb.binding.datatypes.anyType
     
-    # Attribute hreflang uses Python identifier hreflang
-    __hreflang = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, u'hreflang'), 'hreflang', '__httpwww_w3_org2005Atom_linkType_hreflang', pyxb.binding.datatypes.NMTOKEN)
+    # Attribute title uses Python identifier title
+    __title = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, u'title'), 'title', '__httpwww_w3_org2005Atom_linkType_title', pyxb.binding.datatypes.string)
     
-    hreflang = property(__hreflang.value, __hreflang.set, None, None)
+    title = property(__title.value, __title.set, None, None)
 
     
     # Attribute href uses Python identifier href
@@ -63,10 +63,10 @@ class linkType (pyxb.binding.basis.complexTypeDefinition):
     href = property(__href.value, __href.set, None, None)
 
     
-    # Attribute rel uses Python identifier rel
-    __rel = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, u'rel'), 'rel', '__httpwww_w3_org2005Atom_linkType_rel', pyxb.binding.datatypes.string)
+    # Attribute length uses Python identifier length
+    __length = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, u'length'), 'length', '__httpwww_w3_org2005Atom_linkType_length', pyxb.binding.datatypes.positiveInteger)
     
-    rel = property(__rel.value, __rel.set, None, None)
+    length = property(__length.value, __length.set, None, None)
 
     
     # Attribute type uses Python identifier type
@@ -75,28 +75,28 @@ class linkType (pyxb.binding.basis.complexTypeDefinition):
     type = property(__type.value, __type.set, None, None)
 
     
-    # Attribute title uses Python identifier title
-    __title = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, u'title'), 'title', '__httpwww_w3_org2005Atom_linkType_title', pyxb.binding.datatypes.string)
+    # Attribute rel uses Python identifier rel
+    __rel = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, u'rel'), 'rel', '__httpwww_w3_org2005Atom_linkType_rel', pyxb.binding.datatypes.string)
     
-    title = property(__title.value, __title.set, None, None)
+    rel = property(__rel.value, __rel.set, None, None)
 
     
-    # Attribute length uses Python identifier length
-    __length = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, u'length'), 'length', '__httpwww_w3_org2005Atom_linkType_length', pyxb.binding.datatypes.positiveInteger)
+    # Attribute hreflang uses Python identifier hreflang
+    __hreflang = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, u'hreflang'), 'hreflang', '__httpwww_w3_org2005Atom_linkType_hreflang', pyxb.binding.datatypes.NMTOKEN)
     
-    length = property(__length.value, __length.set, None, None)
+    hreflang = property(__hreflang.value, __hreflang.set, None, None)
 
 
     _ElementMap = {
         
     }
     _AttributeMap = {
-        __hreflang.name() : __hreflang,
-        __href.name() : __href,
-        __rel.name() : __rel,
-        __type.name() : __type,
         __title.name() : __title,
-        __length.name() : __length
+        __href.name() : __href,
+        __length.name() : __length,
+        __type.name() : __type,
+        __rel.name() : __rel,
+        __hreflang.name() : __hreflang
     }
 Namespace.addCategoryObject('typeBinding', u'linkType', linkType)
 

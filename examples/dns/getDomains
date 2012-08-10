@@ -17,3 +17,8 @@ xml = resp.read()
 
 domains = dns.CreateFromDocument(xml)
 
+for d in domains.domain:
+    cols = ["id","accountId","name","ttl","emailAddress","status","created",
+            "owner","contentType","comment"]
+    msg = "domain %s:\n"%(clientUtils.attrStrs(d,*cols))
+    sys.stdout.write(msg)

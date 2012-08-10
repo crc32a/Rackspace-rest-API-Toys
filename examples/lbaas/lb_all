@@ -17,7 +17,7 @@ xml = resp.read()
 lbs = lbaas.CreateFromDocument(xml)
 
 if util.pyXBName(lbs) != "loadBalancers":
-    sys.stdout.write("Error object returned was %s\n"%pyXBName(lbs))
+    sys.stdout.write("Error object returned was %s\n"%util.pyXBName(lbs))
     sys.exit()
 
 for lb in lbs.loadBalancer:
