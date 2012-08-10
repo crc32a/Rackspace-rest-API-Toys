@@ -47,5 +47,5 @@ xmlHdrs = {"accept":"application/xml","content-type":"application/xml"}
 
 auth = AuthClient(**auth_conf)
 dns = DnsClient(uri=dnsep,account=account,auth=auth,headers=xmlHdrs)
-lbaas = LbaasClient(uri=lbaasep,account=account,auth=auth)
+lbaas = LbaasClient(uri=lbaasep,account=account,auth=auth,headers=xmlHdrs)
 

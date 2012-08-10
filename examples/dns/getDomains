@@ -1,14 +1,19 @@
 #!/usr/bin/env python
 
-import rackspace.exp.rest.base.util
-import clientUtils
 import sys
 import os
 
+sys.path.insert(0,os.path.split(os.path.abspath(os.path.dirname(__file__)))[0])
+import rackspace.exp.rest.base.util
+import rackspace.exp.objs.dns
+import clientUtils
+
 util = rackspace.exp.rest.base.util.BaseUtil
 printf = util.printf
+dns = rackspace.exp.objs.dns.dns
 
-dns = clientUtils.dns
+resp = clientUtils.dns.getDomains()
+xml = resp.read()
 
-resp = dns.getDomains()
-obj = resp.read()
+domains = dns.CreateFromDocument(xml)
+
