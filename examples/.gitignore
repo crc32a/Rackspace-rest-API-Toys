@@ -1,2 +1,4 @@
 *.json
 !auth_example.json
+*.auth
+*.conf
