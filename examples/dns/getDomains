@@ -20,5 +20,5 @@ domains = dns.CreateFromDocument(xml)
 for d in domains.domain:
     cols = ["id","accountId","name","ttl","emailAddress","status","created",
             "owner","contentType","comment"]
-    msg = "domain %s:\n"%(clientUtils.attrStrs(d,*cols))
+    msg = "domain %s\n%s\n"%(d.name,clientUtils.attrStrs(d,*cols))
     sys.stdout.write(msg)

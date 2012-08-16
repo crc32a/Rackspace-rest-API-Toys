@@ -13,10 +13,8 @@ LbaasClient = rackspace.exp.rest.lbaas.client.lbaas1_0.LbaasClient1_0
 
 def attrStrs(obj,*attrNames):
     out = ""
-    for attrName in attrNames[:-1]:
-        out += "%s=%s, "%(attrName,getattr(obj,attrName))
-    for attrName in attrNames[-1:]:
-        out += "%s=%s"%(attrName,getattr(obj,attrName))
+    for attrName in attrNames:
+        out += "    %s: %s\n"%(attrName,getattr(obj,attrName))
     return out
 
 #Git the filepath relative to this module.

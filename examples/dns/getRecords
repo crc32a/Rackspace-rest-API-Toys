@@ -5,6 +5,7 @@ import os
 
 sys.path.insert(0,os.path.split(os.path.abspath(os.path.dirname(__file__)))[0])
 import rackspace.exp.rest.base.util
+import rackspace.exp.objs.dns
 import clientUtils
 
 util = rackspace.exp.rest.base.util.BaseUtil
@@ -15,7 +16,7 @@ def usage(prog):
     printf("\n")
     printf("Fetch records for this domain\n")
 
-dns = clientUtils.dns
+dns = rackspace.exp.objs.dns.dns
 
 prog = os.path.basename(sys.argv[0])
 if len(sys.argv)<2:
@@ -23,12 +24,18 @@ if len(sys.argv)<2:
     sys.exit()
 
 domain_id = int(sys.argv[1])
-
-printf("Records for account=%i domain=%i\n",dns.account,domain_id)
+account_id = clientUtils.dns.account
+printf("Records for account=%i domain=%i\n",account_id,domain_id)
 printf("="*75)
 printf("\n")
 
-records = dns.getRecords(domain_id)["records"]
-printf("%s %s %s %s\n","Name","type","data","ttl")
-for r in records:
-    printf("%s %s %s %s\n",r["name"],r["type"],r["data"],r["ttl"])
+resp = clientUtils.dns.getRecords(domain_id)
+xml = resp.read()
+records = dns.CreateFromDocument(xml)
+
+for r in records.record:
+    cols = ["name","id","type","data","ttl","priority","status","updated",
+            "created","comment"]
+    msg = "record %s\n%s\n"%(r.name,clientUtils.attrStrs(r,*cols))
+    sys.stdout.write(msg)
+
